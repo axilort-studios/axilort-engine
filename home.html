@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Axilort Engine — create, build and play.">
+<title>Axilort Engine</title>
+<style>
+:root{--bg:#050505;--panel:#0b0b0c;--border:#242426;--border2:#18181a;--text:#f2f2f3;--muted:#929297;--red:#ff2028}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{font:inherit;color:inherit;touch-action:manipulation}
+.app{position:fixed;inset:0;width:100vw;height:100vh;display:flex;overflow:hidden;background:#050505}
+@media(orientation:portrait){.app{width:100vh;height:100vw;left:50%;top:50%;right:auto;bottom:auto;inset-inline:auto;inset-block:auto;transform:translate(-50%,-50%) rotate(90deg);transform-origin:center center}}
+.sidebar{width:clamp(94px,15vw,205px);flex:0 0 clamp(94px,15vw,205px);border-right:1px solid var(--border2);background:linear-gradient(180deg,#070708,#050505);padding:clamp(7px,1.25vw,20px) clamp(6px,1vw,15px);display:flex;flex-direction:column;z-index:3}
+.brand{display:flex;align-items:center;justify-content:center;padding:0 0 clamp(9px,1.5vw,22px)}
+.brand img{width:clamp(35px,5vw,80px);height:clamp(35px,5vw,80px);object-fit:contain;flex:none}.brand-text{display:none}
+.nav{display:flex;flex-direction:column;gap:clamp(2px,.4vw,6px)}
+.nav a{border:1px solid transparent;background:transparent;border-radius:clamp(7px,1vw,12px);height:clamp(31px,4vw,50px);display:flex;align-items:center;gap:clamp(5px,.8vw,12px);padding:0 clamp(6px,.9vw,13px);font-weight:600;font-size:clamp(8px,1.05vw,14px);color:#ccc;text-align:left;cursor:pointer;white-space:nowrap;text-decoration:none}
+.nav a:hover{background:#101011}.nav a.active{background:linear-gradient(90deg,rgba(255,32,40,.15),rgba(255,32,40,.055));border-color:#8e161b;color:#fff;box-shadow:inset 2px 0 0 var(--red)}
+.ico{width:clamp(14px,1.7vw,21px);height:clamp(14px,1.7vw,21px);display:grid;place-items:center;color:#eee;flex:0 0 auto;font-size:clamp(11px,1.35vw,18px)}.active .ico{color:var(--red)}
+.version{margin-top:auto;padding:clamp(7px,1vw,13px) clamp(6px,.8vw,11px);color:#66666b;font-size:clamp(7px,.8vw,10px);font-weight:600;text-align:center;white-space:nowrap}
+.main{min-width:0;flex:1;display:flex;flex-direction:column}.topbar{height:clamp(39px,5.5vw,68px);flex:0 0 clamp(39px,5.5vw,68px);display:flex;align-items:center;justify-content:flex-end;padding:0 clamp(8px,1.7vw,24px)}
+.top-action{width:clamp(28px,3.8vw,42px);height:clamp(28px,3.8vw,42px);border:0;border-radius:9px;background:transparent;display:grid;place-items:center;cursor:pointer;text-decoration:none}.top-action:hover{background:#111112}.gear{font-size:clamp(17px,2.25vw,25px);line-height:1;color:#ededee}
+.content{padding:clamp(8px,1.7vw,25px) clamp(10px,2vw,28px) clamp(8px,1.7vw,24px);overflow:auto;height:100%;scrollbar-width:thin;scrollbar-color:#29292b transparent}
+.welcome{margin-bottom:clamp(7px,1.15vw,17px)}.welcome h1{font-size:clamp(15px,2.55vw,27px);line-height:1.1;margin:0;font-weight:800;letter-spacing:-.035em}.welcome h1 span{color:var(--red)}.welcome p{margin:3px 0 0;color:#929297;font-size:clamp(7px,1.05vw,13px)}
+.hero{height:clamp(112px,24vw,245px);border:1px solid var(--border);border-radius:clamp(9px,1.5vw,17px);position:relative;overflow:hidden;background:#09090a url('images/background.png') center/cover no-repeat}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,7,8,.97) 0%,rgba(7,7,8,.88) 40%,rgba(7,7,8,.38) 72%,rgba(7,7,8,.08) 100%)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.24),transparent 45%)}
+.hero-copy{position:relative;z-index:1;padding:clamp(14px,3vw,36px)}.hero-copy h2{font-size:clamp(15px,2.55vw,27px);margin:0 0 4px;letter-spacing:-.035em}.hero-copy p{color:#bdbdc1;max-width:390px;font-size:clamp(7px,1.1vw,13px);line-height:1.45;margin:0 0 clamp(8px,1.5vw,18px)}
+.primary{border:1px solid #ff3b42;background:linear-gradient(180deg,#ff3038,#d9151c);border-radius:7px;padding:clamp(6px,1vw,11px) clamp(9px,1.5vw,17px);font-size:clamp(7px,1vw,12px);font-weight:750;cursor:pointer;box-shadow:0 6px 18px rgba(255,32,40,.16);text-decoration:none;display:inline-block}.primary:hover{filter:brightness(1.08)}
+.quick-title{font-size:clamp(11px,1.55vw,17px);font-weight:750;margin:clamp(10px,1.5vw,18px) 0 clamp(6px,1vw,11px)}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1.1vw,14px)}
+.quick{min-width:0;min-height:clamp(58px,7vw,105px);border:1px solid var(--border);background:linear-gradient(145deg,#0c0c0d,#080809);border-radius:clamp(8px,1.2vw,15px);display:flex;align-items:center;gap:clamp(7px,1.2vw,15px);padding:clamp(8px,1.25vw,16px);text-decoration:none}.quick:hover{border-color:#8e161b;background:#101011}
+.quick-icon{width:clamp(25px,3.5vw,43px);height:clamp(25px,3.5vw,43px);display:grid!important;place-items:center;color:var(--red);font-size:clamp(17px,2.5vw,29px);line-height:1;flex:0 0 auto}
+.quick-copy{min-width:0;display:block!important}.quick strong{display:block;font-size:clamp(8px,1.15vw,13px);line-height:1.15}.quick-copy small{display:block;color:#99999e;font-size:clamp(7px,.95vw,11px);line-height:1.25;margin-top:3px}
+.recent{margin-top:clamp(9px,1.5vw,18px);border:1px solid var(--border);background:linear-gradient(145deg,#0b0b0c,#080809);border-radius:clamp(9px,1.2vw,15px);overflow:hidden}.panel-head{height:clamp(30px,4vw,48px);padding:0 clamp(9px,1.3vw,16px);border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between}.panel-head h3{font-size:clamp(9px,1.4vw,16px);margin:0;letter-spacing:-.02em}.view{font-size:clamp(7px,1vw,10px);color:var(--red);font-weight:700;text-decoration:none}.empty{min-height:clamp(58px,8vw,115px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px}.empty-icon{width:clamp(22px,3.2vw,40px);height:clamp(22px,3.2vw,40px);border:1px solid #2a2a2d;border-radius:8px;display:grid;place-items:center;color:#777;margin-bottom:5px;font-size:clamp(9px,1.3vw,15px)}.empty strong{font-size:clamp(8px,1.05vw,12px)}.empty span{font-size:clamp(7px,.85vw,10px);color:#777;margin-top:2px}
+@media(max-height:360px){.sidebar{width:clamp(86px,16vw,145px);flex-basis:clamp(86px,16vw,145px)}.nav a{height:29px}.brand img{width:34px;height:34px}.content{padding:7px 9px}.quick{min-height:52px}.quick-copy small{display:none}.quick-title{margin-top:7px}}
+@media(max-width:600px) and (orientation:landscape){.sidebar{width:100px;flex-basis:100px}.brand img{width:34px;height:34px}.nav a{height:30px;font-size:8px;gap:5px;padding:0 6px}.version{font-size:7px}.topbar{height:38px;flex-basis:38px}.content{padding:7px 9px}.welcome{margin-bottom:7px}.quick-title{margin-top:8px;margin-bottom:5px}.quick{min-height:55px;padding:7px}.quick-icon{width:24px;height:24px;font-size:17px}.quick-copy small{font-size:7px}.recent{margin-top:8px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><img src="images/logo.png" alt="Axilort Engine"></div>
+<nav class="nav" aria-label="Engine navigation">
+<a class="active" href="index.html"><span class="ico">⌂</span>Home</a>
+<a href="projects.html"><span class="ico">□</span>Projects</a>
+<a href="assets.html"><span class="ico">◇</span>Assets</a>
+<a href="settings.html"><span class="ico">⚙</span>Settings</a>
+<a href="team.html"><span class="ico">♙</span>Team</a>
+<a href="docs.html"><span class="ico">▤</span>Docs</a>
+</nav>
+<div class="version">Axilort Engine v1.0.0</div>
+</aside>
+<main class="main">
+<header class="topbar"><a class="top-action" href="settings.html" aria-label="Open settings"><span class="gear">⚙</span></a></header>
+<div class="content">
+<div class="welcome"><h1>Welcome to <span>Axilort Engine</span></h1><p>Turn your imagination into reality.</p></div>
+<section class="hero"><div class="hero-copy"><h2>Build. Create. Play.</h2><p>Make stunning games with powerful tools designed for everyone.</p><a class="primary" href="projects.html">＋&nbsp; New Project</a></div></section>
+<h2 class="quick-title">Quick Actions</h2>
+<section class="quick-grid" aria-label="Quick Actions">
+<a class="quick" href="projects.html"><span class="quick-icon" aria-hidden="true">＋</span><span class="quick-copy"><strong>New Project</strong><small>Create a new game project</small></span></a>
+<a class="quick" href="projects.html"><span class="quick-icon" aria-hidden="true">□</span><span class="quick-copy"><strong>Open Project</strong><small>Open an existing project</small></span></a>
+<a class="quick" href="assets.html"><span class="quick-icon" aria-hidden="true">↥</span><span class="quick-copy"><strong>Import Assets</strong><small>Add assets to your project</small></span></a>
+</section>
+<section class="recent"><div class="panel-head"><h3>Recent Projects</h3><a class="view" href="projects.html">View All</a></div><div class="empty"><div class="empty-icon">□</div><strong>No projects yet</strong><span>Create your first project to see it here.</span></div></section>
+</div>
+</main>
+</div>
+</body>
+</html>
