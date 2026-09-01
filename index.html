@@ -7,57 +7,54 @@
 <meta name="color-scheme" content="dark">
 <title>Axilort Engine</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden}
-body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#030303;color:#fff;-webkit-font-smoothing:antialiased}
-body:before{content:"";position:fixed;inset:-30%;background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.055),transparent 22%),radial-gradient(circle at 8% 100%,rgba(235,15,15,.16),transparent 28%),radial-gradient(circle at 100% 0,rgba(255,35,35,.07),transparent 24%);filter:blur(55px);pointer-events:none}
-.grid{position:fixed;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(circle,#000 0,transparent 76%);-webkit-mask-image:radial-gradient(circle,#000 0,transparent 76%);pointer-events:none}
-.vignette{position:fixed;inset:0;box-shadow:inset 0 0 180px rgba(0,0,0,.85);pointer-events:none}
-.shell{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(91vw,760px);min-height:min(76vh,650px);display:flex;align-items:center;justify-content:center;padding:42px 28px;border:1px solid rgba(255,255,255,.11);border-radius:34px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));box-shadow:0 40px 120px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);overflow:hidden}
-.shell:before{content:"";position:absolute;width:440px;height:440px;left:50%;top:30%;transform:translate(-50%,-50%);border-radius:50%;background:rgba(220,15,15,.08);filter:blur(85px);pointer-events:none}
-.edge{position:absolute;left:12%;right:12%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,45,45,.8),transparent);box-shadow:0 0 22px rgba(255,25,25,.3)}
-.content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
-.logo-wrap{position:relative;margin-bottom:27px}.logo-wrap:after{content:"";position:absolute;inset:14px;border-radius:50%;background:rgba(230,20,20,.18);filter:blur(22px);z-index:-1}
-.logo{width:108px;height:108px;object-fit:contain;border-radius:25px;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));animation:float 4s ease-in-out infinite}
-.brand{font-size:10px;font-weight:800;letter-spacing:.28em;color:rgba(255,255,255,.42);text-transform:uppercase;margin-bottom:13px}
-h1{font-size:clamp(39px,8vw,64px);line-height:.96;font-weight:850;letter-spacing:-.055em;margin-bottom:18px;background:linear-gradient(180deg,#fff 5%,#c7c7c7 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sub{max-width:500px;color:rgba(255,255,255,.52);font-size:15px;line-height:1.65;margin-bottom:35px}
-.launch{position:relative;width:235px;height:56px;border:1px solid rgba(255,255,255,.86);border-radius:15px;background:linear-gradient(135deg,#fff,#e9e9e9);color:#050505;font-size:14px;font-weight:850;letter-spacing:.01em;cursor:pointer;box-shadow:0 18px 45px rgba(0,0,0,.45),0 0 0 4px rgba(255,30,30,.055);transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;-webkit-tap-highlight-color:transparent;overflow:hidden}
-.launch:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.8) 50%,transparent 75%);transform:translateX(-120%);transition:transform .65s ease}.launch:hover:before{transform:translateX(120%)}.launch:hover{transform:translateY(-2px);box-shadow:0 22px 55px rgba(0,0,0,.55),0 0 30px rgba(255,25,25,.12)}.launch:active{transform:scale(.98)}
-.launch span{position:relative;z-index:1}
-.meta{display:flex;align-items:center;gap:8px;margin-top:19px;color:rgba(255,255,255,.27);font-size:10px;letter-spacing:.1em;text-transform:uppercase}.dot{width:6px;height:6px;border-radius:50%;background:#ff3030;box-shadow:0 0 12px rgba(255,30,30,.75)}
-.loader{position:fixed;inset:0;z-index:20;background:#030303;display:grid;place-items:center;transition:opacity .45s ease,visibility .45s ease}.loader.hide{opacity:0;visibility:hidden}.loader img{width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 0 24px rgba(255,25,25,.22));animation:pulse 1.05s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes pulse{0%,100%{transform:scale(.93);opacity:.62}50%{transform:scale(1);opacity:1}}
-@media(max-width:520px){.shell{width:calc(100vw - 26px);min-height:calc(100vh - 90px);border-radius:28px;padding:30px 20px}.logo{width:82px;height:82px}.logo-wrap{margin-bottom:21px}h1{font-size:clamp(35px,11vw,49px)}.sub{font-size:13px;max-width:330px;margin-bottom:28px}.launch{width:min(280px,100%);height:54px}.meta{margin-top:17px}}
+:root{--bg:#050505;--panel:#0b0b0c;--red:#e50914;--red2:#ff2934;--white:#fff;--muted:#858589;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--white)}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 75% 45%,rgba(229,9,20,.13),transparent 34%),radial-gradient(circle at 20% 15%,rgba(255,255,255,.035),transparent 28%),linear-gradient(135deg,#030303,#090909 55%,#040404);pointer-events:none}
+.grid{position:fixed;inset:0;opacity:.1;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 78%,transparent);-webkit-mask-image:linear-gradient(to bottom,transparent,#000 22%,#000 78%,transparent);pointer-events:none}
+.noise{position:fixed;inset:0;opacity:.035;background-image:url("https://grainy-gradients.vercel.app/noise.svg");mix-blend-mode:screen;pointer-events:none}
+.launcher{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px}
+.window{position:relative;width:min(1180px,94vw);height:min(700px,86vh);min-height:430px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,rgba(18,18,19,.97),rgba(7,7,8,.94));box-shadow:0 45px 140px rgba(0,0,0,.72),0 0 70px rgba(229,9,20,.06),inset 0 1px rgba(255,255,255,.06);overflow:hidden;display:grid;grid-template-columns:42% 58%}
+.window:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 4%,var(--red) 50%,transparent 96%);box-shadow:0 0 22px rgba(229,9,20,.7);z-index:5}
+.side{position:relative;border-right:1px solid var(--line);padding:34px 38px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(160deg,rgba(255,255,255,.025),transparent 48%),radial-gradient(circle at 30% 45%,rgba(229,9,20,.1),transparent 48%)}
+.brand{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#fff}.brand img{width:34px;height:34px;object-fit:contain;border-radius:9px}.brand span{color:var(--muted)}
+.side-main{margin-top:auto;margin-bottom:auto}.kicker{display:inline-flex;align-items:center;gap:8px;color:#b7b7ba;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}.kicker i{display:block;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 13px var(--red)}
+h1{font-size:clamp(42px,5vw,72px);line-height:.94;letter-spacing:-.065em;font-weight:900;margin-bottom:20px}h1 em{font-style:normal;color:var(--red)}
+.desc{max-width:420px;color:#99999e;font-size:14px;line-height:1.75}
+.version{display:flex;gap:22px;color:#646468;font-size:10px;text-transform:uppercase;letter-spacing:.14em}.version strong{color:#a8a8ac;font-weight:700}
+.main{position:relative;padding:38px 42px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 80% 48%,rgba(229,9,20,.07),transparent 35%)}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:44px;color:#646468;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.secure{display:flex;align-items:center;gap:7px}.secure:before{content:"";width:6px;height:6px;border-radius:50%;background:#38d47a;box-shadow:0 0 10px rgba(56,212,122,.55)}
+.section-title{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#77777c;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:30px}.card{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:14px;padding:18px;min-height:100px}.card b{display:block;font-size:13px;margin-bottom:7px}.card p{color:#77777c;font-size:11px;line-height:1.5}
+.launch{width:100%;height:58px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:linear-gradient(100deg,var(--red),#b90710);color:#fff;font-size:14px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 15px 42px rgba(229,9,20,.2),inset 0 1px rgba(255,255,255,.18);transition:.2s;position:relative;overflow:hidden}.launch:after{content:"";position:absolute;top:0;bottom:0;width:100px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:skewX(-20deg) translateX(-180px);transition:.7s}.launch:hover:after{transform:skewX(-20deg) translateX(500px)}.launch:hover{transform:translateY(-2px);box-shadow:0 20px 52px rgba(229,9,20,.3)}.launch:active{transform:scale(.985)}
+.hint{text-align:center;color:#4f4f53;font-size:10px;margin-top:13px}
+.loader{position:fixed;inset:0;z-index:20;background:#050505;display:grid;place-items:center;transition:.45s}.loader.hide{opacity:0;visibility:hidden}.loader img{width:70px;height:70px;object-fit:contain;filter:drop-shadow(0 0 25px rgba(229,9,20,.28));animation:pulse 1s infinite}
+@keyframes pulse{50%{transform:scale(1.05);opacity:1}}@media(max-width:760px){.launcher{padding:12px}.window{width:96vw;height:90vh;grid-template-columns:1fr;border-radius:22px;overflow:auto}.side{border-right:0;border-bottom:1px solid var(--line);padding:24px 25px;min-height:44%}.side-main{margin:38px 0 30px}.main{padding:25px;min-height:56%}h1{font-size:42px}.desc{font-size:12px}.topline{margin-bottom:28px}.cards{margin-bottom:22px}.card{min-height:82px;padding:14px}}
+@media(orientation:portrait) and (max-width:600px){.window{width:96vw;height:92vh}.side{min-height:43%}.main{min-height:57%}}
+@media(min-width:1100px){.window{aspect-ratio:16/9;height:auto;max-height:86vh}}
 </style>
 </head>
 <body>
-<div class="grid"></div><div class="vignette"></div>
+<div class="grid"></div><div class="noise"></div>
 <div class="loader" id="loader"><img src="images/logo.png" alt=""></div>
-<main class="shell" id="launcher">
-<div class="edge"></div>
-<div class="content">
-<div class="logo-wrap"><img class="logo" src="images/logo.png" alt="Axilort Engine"></div>
-<div class="brand">Axilort Studios</div>
-<h1>Axilort Engine</h1>
-<p class="sub">A focused game creation environment built to turn ideas into playable worlds.</p>
-<button class="launch" id="launch" type="button"><span>Launch Engine</span></button>
-<div class="meta"><span class="dot"></span><span>Ready</span></div>
-</div>
+<div class="launcher"><section class="window">
+<aside class="side">
+<div class="brand"><img src="images/logo.png" alt=""><span>Axilort Studios</span></div>
+<div class="side-main"><div class="kicker"><i></i>Game Development Environment</div><h1>Axilort<br><em>Engine.</em></h1><p class="desc">Create, design, script, build, and experience your games from one focused development environment.</p></div>
+<div class="version"><span>Platform <strong>Web</strong></span><span>Build <strong>Live</strong></span></div>
+</aside>
+<main class="main">
+<div class="topline"><span>Engine Launcher</span><span class="secure">Online</span></div>
+<div class="section-title">Ready to create</div>
+<div class="cards"><div class="card"><b>Powerful Workspace</b><p>A clean environment for your game development workflow.</p></div><div class="card"><b>Multi-Device</b><p>Designed to work across desktop, tablet, and mobile screens.</p></div><div class="card"><b>Fast Workflow</b><p>Get from idea to playable project with less friction.</p></div><div class="card"><b>Always Online</b><p>Launch the latest engine workspace directly from the web.</p></div></div>
+<button class="launch" id="launch" type="button">Launch Axilort Engine</button>
+<div class="hint">The engine opens in the current window.</div>
 </main>
+</section></div>
 <script>
-const loader=document.getElementById('loader');
-const launch=document.getElementById('launch');
-setTimeout(()=>loader.classList.add('hide'),550);
-launch.addEventListener('click',async()=>{
-  const url='https://axilort-engine.pages.dev/home';
-  launch.disabled=true;
-  try{
-    if(document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
-    else if(document.documentElement.webkitRequestFullscreen) document.documentElement.webkitRequestFullscreen();
-  }catch(e){}
-  window.location.replace(url);
-});
+const loader=document.getElementById('loader');const launch=document.getElementById('launch');
+setTimeout(()=>loader.classList.add('hide'),500);
+launch.addEventListener('click',()=>{window.location.href='https://axilort-engine.pages.dev/home'});
 </script>
 </body>
 </html>
