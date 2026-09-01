@@ -1,65 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0, user-scalable=no">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title></title>
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #080808;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    .skeleton {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        #080808 25%,
-        #151515 50%,
-        #080808 75%
-      );
-      background-size: 200% 100%;
-      animation: loading 0.25s linear infinite;
-    }
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050505;
+}
 
-    @keyframes loading {
-      from {
+#loader {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        100deg,
+        #050505 20%,
+        #151515 40%,
+        #050505 60%
+    );
+    background-size: 200% 100%;
+    animation: shimmer .25s linear infinite;
+}
+
+@keyframes shimmer {
+    from {
         background-position: 200% 0;
-      }
-      to {
-        background-position: -200% 0;
-      }
     }
-  </style>
+
+    to {
+        background-position: -200% 0;
+    }
+}
+
+iframe {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: none;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="skeleton"></div>
+<div id="loader"></div>
 
-  <script>
-    const target = "https://axilort-engine.pages.dev/home";
+<iframe
+    id="engine"
+    src="https://axilort-engine.pages.dev/home"
+    allow="fullscreen; autoplay; clipboard-read; clipboard-write"
+    allowfullscreen>
+</iframe>
 
-    setTimeout(() => {
-      // Try browser fullscreen
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      }
+<script>
+const loader = document.getElementById("loader");
+const engine = document.getElementById("engine");
 
-      // Open the engine
-      window.location.replace(target);
-    }, 100);
-  </script>
+setTimeout(() => {
+    loader.remove();
+    engine.style.display = "block";
+
+    // Request fullscreen
+    const element = document.documentElement;
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen().catch(() => {});
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+
+}, 100);
+</script>
 
 </body>
 </html>
