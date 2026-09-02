@@ -1,1 +1,65 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#050505"><title>Team — Axilort Engine</title><style>:root{--bg:#050505;--panel:#0b0b0c;--border:#242426;--text:#f2f2f3;--muted:#929297;--red:#ff2028}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}.app{position:fixed;inset:0;display:flex}.sidebar{width:clamp(104px,16vw,205px);flex:0 0 clamp(104px,16vw,205px);border-right:1px solid #18181a;background:#070708;padding:clamp(9px,1.5vw,20px) clamp(7px,1.1vw,15px);display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:8px;padding:0 4px 20px}.brand img{width:clamp(34px,4.7vw,58px);height:clamp(34px,4.7vw,58px)}.brand strong,.brand span{display:block}.brand strong{font-size:clamp(9px,1.25vw,15px);letter-spacing:.12em}.brand span{color:#aaa;font-size:clamp(6px,.7vw,9px);letter-spacing:.22em;margin-top:4px}.nav{display:flex;flex-direction:column;gap:5px}.nav a{height:clamp(35px,4.1vw,50px);display:flex;align-items:center;gap:9px;padding:0 10px;border:1px solid transparent;border-radius:10px;text-decoration:none;color:#ccc;font-size:clamp(9px,1.15vw,14px);font-weight:600}.nav a.active,.nav a:hover{background:rgba(255,32,40,.09);border-color:#8e161b;color:#fff}.ico{width:20px;text-align:center}.status{margin-top:auto;border:1px solid var(--border);border-radius:10px;padding:10px;font-size:clamp(8px,1vw,12px)}.status small{display:block;color:#16e56d;margin-top:5px}.main{flex:1;min-width:0}.topbar{height:clamp(43px,6vw,68px);border-bottom:1px solid #18181a;display:flex;justify-content:flex-end;align-items:center;padding:0 20px}.topbar a{font-size:22px;text-decoration:none}.content{height:calc(100% - clamp(43px,6vw,68px));overflow:auto;padding:clamp(15px,2.5vw,30px)}h1{font-size:clamp(18px,2.7vw,28px);margin:0 0 6px}.muted{color:var(--muted);font-size:clamp(9px,1.2vw,13px)}.card{margin-top:20px;border:1px solid var(--border);border-radius:12px;background:var(--panel);padding:24px}.card h2{font-size:16px}.card p{color:var(--muted);font-size:12px}@media(orientation:portrait){.app{width:100vh;height:100vw;left:50%;top:50%;transform:translate(-50%,-50%) rotate(90deg)}}@media(max-width:600px) and (orientation:landscape){.sidebar{width:110px;flex-basis:110px}.brand img{width:36px;height:36px}.brand div{display:none}.nav a{height:32px;font-size:8px}.topbar{height:42px}}</style></head><body><div class="app"><aside class="sidebar"><div class="brand"><img src="images/logo.png" alt="Axilort Engine"><div><strong>AXILORT</strong><span>ENGINE</span></div></div><nav class="nav"><a href="index.html"><span class="ico">⌂</span>Home</a><a href="projects.html"><span class="ico">□</span>Projects</a><a href="assets.html"><span class="ico">◇</span>Assets</a><a href="settings.html"><span class="ico">⚙</span>Settings</a><a class="active" href="team.html"><span class="ico">♙</span>Team</a><a href="docs.html"><span class="ico">▤</span>Docs</a></nav><div class="status">System Status<small>All Systems Operational</small></div></aside><main class="main"><header class="topbar"><a href="settings.html">☰</a></header><div class="content"><h1>Team</h1><div class="muted">Manage your Axilort Engine team.</div><div class="card"><h2>No team members yet</h2><p>Team members will appear here when added.</p></div></div></main></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#050505">
+<title>Team — Axilort Engine</title>
+<style>
+:root{--bg:#050505;--panel:#0b0b0c;--border:#242426;--border2:#18181a;--text:#f2f2f3;--muted:#929297;--red:#ff2028}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{font:inherit;color:inherit;touch-action:manipulation}
+a{text-decoration:none}
+.app{position:fixed;inset:0;width:100vw;height:100vh;display:flex;overflow:hidden;background:#050505}
+@media(orientation:portrait){.app{width:100vh;height:100vw;left:50%;top:50%;right:auto;bottom:auto;inset-inline:auto;inset-block:auto;transform:translate(-50%,-50%) rotate(90deg);transform-origin:center center}}
+.sidebar{width:clamp(94px,15vw,205px);flex:0 0 clamp(94px,15vw,205px);border-right:1px solid var(--border2);background:linear-gradient(180deg,#070708,#050505);padding:clamp(7px,1.25vw,20px) clamp(6px,1vw,15px);display:flex;flex-direction:column;z-index:3}
+.brand{display:flex;align-items:center;justify-content:center;padding:0 0 clamp(9px,1.5vw,22px)}
+.brand img{width:clamp(35px,5vw,80px);height:clamp(35px,5vw,80px);object-fit:contain;flex:none}.brand-text{display:none}
+.nav{display:flex;flex-direction:column;gap:clamp(2px,.4vw,6px)}
+.nav a{border:1px solid transparent;background:transparent;border-radius:clamp(7px,1vw,12px);height:clamp(31px,4vw,50px);display:flex;align-items:center;gap:clamp(5px,.8vw,12px);padding:0 clamp(6px,.9vw,13px);font-weight:600;font-size:clamp(8px,1.05vw,14px);color:#ccc;text-align:left;cursor:pointer;white-space:nowrap}
+.nav a:hover{background:#101011}.nav a.active{background:linear-gradient(90deg,rgba(255,32,40,.15),rgba(255,32,40,.055));border-color:#8e161b;color:#fff;box-shadow:inset 2px 0 0 var(--red)}
+.ico{width:clamp(14px,1.7vw,21px);height:clamp(14px,1.7vw,21px);display:grid;place-items:center;color:#eee;flex:0 0 auto;font-size:clamp(11px,1.35vw,18px)}.active .ico{color:var(--red)}
+.version{margin-top:auto;padding:clamp(7px,1vw,13px) clamp(6px,.8vw,11px);color:#66666b;font-size:clamp(7px,.8vw,10px);font-weight:600;text-align:center;white-space:nowrap}
+.main{min-width:0;flex:1;display:flex;flex-direction:column}.topbar{height:clamp(39px,5.5vw,68px);flex:0 0 clamp(39px,5.5vw,68px);display:flex;align-items:center;justify-content:flex-end;padding:0 clamp(8px,1.7vw,24px)}
+.top-action{width:clamp(28px,3.8vw,42px);height:clamp(28px,3.8vw,42px);border:0;border-radius:9px;background:transparent;display:grid;place-items:center;cursor:pointer;text-decoration:none}.top-action:hover{background:#111112}.gear{font-size:clamp(17px,2.25vw,25px);line-height:1;color:#ededee}
+.content{padding:clamp(8px,1.7vw,25px) clamp(10px,2vw,28px) clamp(8px,1.7vw,24px);overflow:auto;height:100%;scrollbar-width:thin;scrollbar-color:#29292b transparent}
+.heading{margin-bottom:clamp(7px,1.15vw,17px)}.heading h1{font-size:clamp(15px,2.55vw,27px);line-height:1.1;margin:0;font-weight:800;letter-spacing:-.035em}.heading h1 span{color:var(--red)}.heading p{margin:3px 0 0;color:#929297;font-size:clamp(7px,1.05vw,13px)}
+.card{border:1px solid var(--border);background:linear-gradient(145deg,#0c0c0d,#080809);border-radius:clamp(9px,1.2vw,15px);padding:clamp(12px,1.7vw,20px);max-width:760px}
+.card-title{display:flex;align-items:center;gap:clamp(7px,1vw,11px);margin-bottom:clamp(5px,.8vw,9px)}
+.card-icon{width:clamp(28px,3.5vw,43px);height:clamp(28px,3.5vw,43px);display:grid;place-items:center;border:1px solid #2a2a2d;border-radius:8px;background:#0b0b0c;color:var(--red);font-size:clamp(13px,1.8vw,21px);flex:0 0 auto}
+.card h2{font-size:clamp(10px,1.35vw,15px);margin:0;font-weight:750}.card p{font-size:clamp(7px,.95vw,11px);line-height:1.5;color:#929297;margin:0;max-width:620px}.coming{display:inline-flex;align-items:center;margin-top:clamp(9px,1.2vw,14px);padding:clamp(5px,.8vw,8px) clamp(7px,1vw,11px);border:1px solid #8e161b;border-radius:7px;background:rgba(255,32,40,.08);color:#ff5b61;font-size:clamp(7px,.85vw,10px);font-weight:750}
+.info{margin-top:clamp(7px,1vw,11px);color:#77777d;font-size:clamp(7px,.85vw,10px);line-height:1.45}
+@media(max-height:360px){.sidebar{width:clamp(86px,16vw,145px);flex-basis:clamp(86px,16vw,145px)}.nav a{height:29px}.brand img{width:34px;height:34px}.content{padding:7px 9px}.card{padding:10px 11px}}
+@media(max-width:600px) and (orientation:landscape){.sidebar{width:100px;flex-basis:100px}.brand img{width:34px;height:34px}.nav a{height:30px;font-size:8px;gap:5px;padding:0 6px}.version{font-size:7px}.topbar{height:38px;flex-basis:38px}.content{padding:7px 9px}.heading{margin-bottom:7px}.heading h1{font-size:17px}.heading p{font-size:8px}.card{padding:9px}.card-icon{width:28px;height:28px;font-size:16px}.card h2{font-size:9px}.card p{font-size:7px}.coming{font-size:7px;padding:5px 7px}.info{font-size:7px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="brand"><img src="images/logo.png" alt="Axilort Engine"></div>
+<nav class="nav" aria-label="Engine navigation">
+<a href="home.html"><span class="ico">⌂</span>Home</a>
+<a href="projects.html"><span class="ico">□</span>Projects</a>
+<a href="assets.html"><span class="ico">◇</span>Assets</a>
+<a href="settings.html"><span class="ico">⚙</span>Settings</a>
+<a class="active" href="team.html"><span class="ico">♙</span>Team</a>
+<a href="docs.html"><span class="ico">▤</span>Docs</a>
+</nav>
+<div class="version">Axilort Engine v1.0.0</div>
+</aside>
+<main class="main">
+<header class="topbar"><a class="top-action" href="settings.html" aria-label="Open settings"><span class="gear">⚙</span></a></header>
+<div class="content">
+<div class="heading"><h1><span>Team</span></h1><p>Build and manage your Axilort Engine team.</p></div>
+<div class="card">
+<div class="card-title"><div class="card-icon">♙</div><h2>Team Features Are Coming Soon</h2></div>
+<p>Team collaboration is being prepared for a future Axilort Engine update. Soon you will be able to work with developers, artists, designers and other team members in one place.</p>
+<div class="coming">Coming Soon</div>
+<div class="info">Team tools will make it easier to organize members, collaborate on projects and manage your studio workflow.</div>
+</div>
+</div>
+</main>
+</div>
+</body>
+</html>
