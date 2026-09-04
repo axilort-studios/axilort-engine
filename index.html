@@ -13,7 +13,7 @@
 <body>
 <div class="bg"></div>
 <main class="page" id="launcher"><section class="panel"><div class="content"><img class="mark" src="images/logo.png" alt="Axilort Engine"><div class="studio">Axilort <b>Studios</b></div><h1>Axilort <span>Engine</span></h1><p class="copy">Create powerful games, shape immersive worlds, and bring your ideas to life with Axilort Engine.</p><div class="details"><b>Create</b><i></i><b>Design</b><i></i><b>Script</b><i></i><b>Build</b><i></i><b>Play</b></div><button class="open" id="open">Open Axilort Engine</button><div class="status">Ready</div><div style="font-size:6px;color:rgba(255,255,255,.38);margin-top:7px">by clicking on open axilort engine you can agree over cookies</div></div></section></main>
-<section id="viewer"><iframe id="website" allow="fullscreen; autoplay; clipboard-read; clipboard-write; camera; microphone; geolocation" allowfullscreen></iframe><div id="loading"><div class="bar"></div></div></section>
+<section id="viewer"><iframe id="website" allow="fullscreen; autoplay; clipboard-read; clipboard-write; camera; microphone; geolocation; gamepad; accelerometer; gyroscope" allowfullscreen></iframe><div id="loading"><div class="bar"></div></div></section>
 <script>
 const target="home.html";
 const launcher=document.getElementById("launcher"),viewer=document.getElementById("viewer"),website=document.getElementById("website"),loading=document.getElementById("loading"),open=document.getElementById("open");
@@ -37,10 +37,11 @@ function createAxilortStorage(){
       const db=e.target.result;
       try{
         const names=["setting.json","user-data.json","project"].filter(n=>db.objectStoreNames.contains(n));
+        if(!names.length){db.close();resolve();return}
         const tx=db.transaction(names,"readwrite");
-        tx.objectStore("setting.json").put({storageVersion:1},"settings");
-        tx.objectStore("user-data.json").put({},"user");
-        tx.objectStore("project").put({},"root");
+        if(db.objectStoreNames.contains("setting.json"))tx.objectStore("setting.json").put({storageVersion:1},"settings");
+        if(db.objectStoreNames.contains("user-data.json"))tx.objectStore("user-data.json").put({},"user");
+        if(db.objectStoreNames.contains("project"))tx.objectStore("project").put({},"root");
         tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();resolve()};
       }catch(err){db.close();resolve()}
     };
@@ -48,35 +49,30 @@ function createAxilortStorage(){
   });
 }
 
-/* Must be called directly from the button gesture; awaiting storage first loses user activation. */
-function enterFullscreen(){
-  if(document.fullscreenElement)return Promise.resolve(true);
-  const el=viewer;
+function requestFullscreenNow(){
   try{
-    if(el.requestFullscreen){
-      return Promise.resolve(el.requestFullscreen({navigationUI:"hide"})).then(()=>true).catch(()=>false);
-    }
-    if(document.documentElement.requestFullscreen){
-      return Promise.resolve(document.documentElement.requestFullscreen({navigationUI:"hide"})).then(()=>true).catch(()=>false);
-    }
-  }catch(e){}
-  return Promise.resolve(false);
+    if(document.fullscreenElement)return Promise.resolve(true);
+    const request=viewer.requestFullscreen||document.documentElement.requestFullscreen;
+    if(!request)return Promise.resolve(false);
+    const element=viewer.requestFullscreen?viewer:document.documentElement;
+    return Promise.resolve(element.requestFullscreen({navigationUI:"hide"})).then(()=>true).catch(()=>false);
+  }catch(e){return Promise.resolve(false)}
 }
 
-function lockLandscape(){
+function requestLandscape(){
   try{if(screen.orientation&&screen.orientation.lock)return screen.orientation.lock("landscape").catch(()=>{});}catch(e){}
   return Promise.resolve();
 }
 
 open.addEventListener("click",function(){
+  /* Everything that needs the original tap happens synchronously here. */
   open.disabled=true;
   launcher.style.display="none";
   viewer.style.display="block";
   loading.style.display="flex";
 
-  /* Fullscreen is requested BEFORE any async IndexedDB operation. */
-  const fs=enterFullscreen();
-  fs.then(()=>lockLandscape());
+  const fullscreen=requestFullscreenNow();
+  fullscreen.then(()=>requestLandscape());
 
   website.src=target;
   createAxilortStorage();
